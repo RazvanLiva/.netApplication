@@ -1,0 +1,46 @@
+﻿@using ViewModels
+@model List<PersonViewModel>
+@{
+    Layout = "~/Views/Shared/_RazvanLivadariuAppLayout.cshtml";
+}
+<div>
+    <div>
+        <a href="@Url.Action("CreatePerson", "Persons")" class="btn btn-secondary mb-2">Add Person</a>
+    </div>
+    <table class="table table-bordered table-dark table-sm">
+        <thead class="thead-dark">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>InfectedWithCovid</th>
+                <th>Recovery</th>
+
+               
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (PersonViewModel personModel in Model)
+            {
+            <tr>
+                <td>@personModel.Id</td>
+                <td>@personModel.FullName</td>
+                <td>@personModel.Email</td>
+                <td>@personModel.InfectedWithCovid</td>
+                <td>@personModel.Recovery</td>
+               
+            
+                <td class="text-center">
+                    <a href="@Url.Action("EditPerson", "Persons", new { id = personModel.Id})" class="btn btn-secondary btn-sm">edit</a>
+                </td>
+                <td class="text-center"><a href="@Url.Action("PersonDetails", "Persons", new { id = personModel.Id})" class="btn btn-secondary btn-sm">details</a></td>
+                <td class="text-center">
+                    <form method="post" action="@Url.Action("DeletePerson", "Persons", new { id = personModel.Id})">
+                        <input type="submit" value="delete" class="btn btn-danger btn-sm" />
+                    </form>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,52 @@
+﻿@using ViewModels
+@model CreatePersonViewModel
+@{
+    Layout = "~/Views/Shared/_RazvanLivadariuAppLayout.cshtml";
+}
+<div class="w-50 m-auto">
+    <form method="post" action="@Url.Action("CreatePerson", "Persons")">
+        @Html.ValidationSummary()
+        <div class="form-group">
+            <label>First Name</label>
+            <input name="FirstName" class="form-control" />
+            @Html.ValidationMessageFor(p => p.FirstName, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            <label>Last Name</label>
+            <input name="LastName" class="form-control" />
+            @Html.ValidationMessageFor(p => p.LastName, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            <label>Email</label>
+            <input name="Email" class="form-control" />
+            @Html.ValidationMessageFor(p => p.Email, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            <label>Age</label>
+            <input type="number" name="Age" class="form-control" />
+            @Html.ValidationMessageFor(p => p.Age, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            <label>InfectedWithCovid</label>
+            <input type="text" name="InfectedWithCovid" class="form-control" />
+        </div>
+        <div class="form-group">
+            <p class="font-weight">Type yes or no</p>
+            <label>Recovery</label>
+            <input type="text" name="Recovery" class="form-control" />
+        </div>
+        <p class="font-weight">Type yes or no</p>
+        <div class="form-group">
+            <label>City</label>
+            <select name="CityId" class="form-control">
+                @foreach (CityViewModel cityModel in ViewBag.Cities)
+                {
+                    <option value="@cityModel.Id">@cityModel.Name</option>
+                }
+            </select>
+        </div>
+
+        <input type="submit" value="Save" class="btn btn-success" />
+        <a href="@Url.Action("PersonsList", "Persons")" class="btn btn-danger">Cancel</a>
+    </form>
+</div>

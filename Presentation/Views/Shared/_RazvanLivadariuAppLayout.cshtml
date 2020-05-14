@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <title>@ViewBag.Title</title>
+</head>
+
+<body style="background: powderblue ">
+
+    <nav class="navbar navbar-white bg-dark justify-content-start ">
+        <a href="/" class="navbar-brand"> Evidence Covid19 </a>
+        <ul class="navbar-nav flex-row">
+            <li class="nav-item mr-3">
+                <a href="@Url.Action("PersonsList", "Persons")" class="nav-link">Persons</a>
+            </li>
+            <li class="nav-item mr-2">
+                <a href="@Url.Action("CitiesList", "Cities")" class="nav-link">Cities</a>
+            </li>
+            <li class="nav-item ">
+                <div class="dropdown">
+                    <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Contact
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" <p>Livadariu Razvan</p> </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="0753599132">Phone</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="razvan.livadariu96@yahoo.com">Email</a>
+
+                    </div>
+
+                </div>
+            </li>
+            
+        </ul>
+        <form class="mx-auto my-0 my-rg-0">
+            <input class="mx-auto mr-rg-0" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success mx-auto my-0 my-rg-0" type="submit">Search</button>
+        </form>
+    </nav>
+   
+    <!-- The main content of the page -->
+    <div class="container-fluid">
+        <!-- Here will be rendered the content of the view we're currently on -->
+        @RenderBody()
+    </div>
+
+    <!-- Include javascript libraries -->
+    <!-- Inclue jquery before bootstrap because bootstrap depends on jquery -->
+    <script src="~/Scripts/jquery-3.0.0.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    <!-- Include view specific script files (if any), defined in section named "Scripts" -->
+    @RenderSection("Scripts", false)
+</body>
+</html>

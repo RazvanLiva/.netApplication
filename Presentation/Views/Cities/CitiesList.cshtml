@@ -1,0 +1,82 @@
+﻿@using ViewModels
+@model List<CityViewModel>
+@{
+    Layout = "~/Views/Shared/_RazvanLivadariuAppLayout.cshtml";
+}
+
+<div>
+    <div>
+        <a href="@Url.Action("CreateCity", "Cities")" class="btn btn-secondary mb-2">Add City</a>
+    </div>
+    <table class="table table-bordered table-dark table-sm">
+        <thead class="thead-dark">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+               
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (CityViewModel cityModel in Model)
+            {
+                <tr id="tr_@(cityModel.Id)">
+                    <td>@cityModel.Id</td>
+                    <td>@cityModel.Name</td>
+                   
+                    <td class="text-center">
+                        <a href="@Url.Action("EditCity", "Cities", new { id = cityModel.Id})" class="btn btn-secondary btn-sm">edit</a>
+                    </td>
+                    <td class="text-center">
+                        <button class="btn btn-secondary btn-sm" onclick="showCityDetails('@cityModel.Id')">details</button>
+                    </td>
+                    <td class="text-center">
+                        <button class="btn btn-danger btn-sm" onclick="deleteCity('@cityModel.Id')">delete</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<!-- 
+    Bootstrap 4 modal component
+    See https://getbootstrap.com/docs/4.4/components/modal/ for documentation and more examples
+-->
+<div class="modal fade" id="cityDetailsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">City details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input id="cityNameInput" class="form-control text-muted" disabled />
+                </div>
+                <div class="form-group">
+                    <label>Number of hospitals</label>
+                    <input id="cityHospitalsInput" class="form-control text-muted" disabled />
+                </div>
+                <div class="form-group">
+                    <label>Number of persons</label>
+                    <input id="cityPersonsInput" class="form-control text-muted" disabled />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 
+    A section which encapsulates all the javascript files for this view
+    Register javascript files specific/used to/by FacultiesList view only 
+-->
+@section Scripts{
+    <script src="~/Scripts/appscripts/cities-list.js"></script>
+}
+

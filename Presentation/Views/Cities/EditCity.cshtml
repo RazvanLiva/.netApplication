@@ -1,0 +1,38 @@
+﻿@using ViewModels
+@model EditCityViewModel
+@{
+    ViewBag.Title = "Edit City";
+    Layout = "~/Views/Shared/_RazvanLivadariuAppLayout.cshtml";
+}
+
+    <div class="w-50 m-auto">
+        <form method="post" id="editCityForm">
+            <input type="hidden" value="@Model.Id" id="cityId" />
+            <div class="form-group">
+                <label>Name</label>
+                <input id="cityNameInput" value="@Model.Name" name="Name" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label>County</label>
+                <select id="cityCounty" class="form-control">
+                    @foreach (CountyViewModel countyModel in ViewBag.Counties)
+                    {
+                        <option @(Model.CountyId == countyModel.Id ? "selected" : "") value="@countyModel.Id">@countyModel.Name</option>
+                    }
+                </select>
+            </div>
+
+            <input type="submit" value="Save" class="btn btn-success" />
+            <a href="@Url.Action("CitiesList", "Cities")" class="btn btn-secondary">Cancel</a>
+        </form>
+
+        
+        <button onclick="loadCityPersons('@Model.Id')" class="btn btn-warning mt-1 mb-1">Load persons</button>
+        <ul id="personsList" class="list-group">
+        </ul>
+    </div>
+
+@section Scripts{
+    <script src="~/Scripts/appscripts/city-edit.js"></script>
+}
+

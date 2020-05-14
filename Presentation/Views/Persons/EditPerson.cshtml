@@ -1,0 +1,47 @@
+﻿@using ViewModels
+@model EditPersonViewModel
+@{
+    Layout = "~/Views/Shared/_RazvanLivadariuAppLayout.cshtml";
+}
+<div class="w-50 m-auto">
+    <form method="post" action="@Url.Action("EditPerson", "Persons")">
+        <div class="form-group">
+            <label>First Name</label>
+            <input name="FirstName" value="@Model.FirstName" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>Last Name</label>
+            <input name="LastName" value="@Model.LastName" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>Email</label>
+            <input name="Email" value="@Model.Email" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>Age</label>
+            <input type="number" name="Age" value="@Model.Age" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>InfectedWithCovid</label>
+            <input type="text" name="InfectedWithCovid" value="@Model.InfectedWithCovid" class="form-control" />
+        </div>
+        <div class="Recovery">
+            <p class="font-weight">Type yes or no</p>
+            <label>Recovery</label>
+            <input type="text" name="Recovery" value="@Model.Recovery" class="form-control" />
+        </div>
+        <p class="font-weight">Type yes or no</p>
+        <div class="form-group">
+            <label>City</label>
+            <select name="CityId" class="form-control">
+                @foreach (CityViewModel cityModel in ViewBag.Cities)
+                {
+                    <option @(Model.CityId == cityModel.Id ? "selected" : "") value="@cityModel.Id">@cityModel.Name</option>
+                }
+            </select>
+        </div>
+
+        <input type="submit" value="Save" class="btn btn-success" />
+        <a href="@Url.Action("PersonsList", "Persons")" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
